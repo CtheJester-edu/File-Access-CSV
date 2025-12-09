@@ -4,7 +4,7 @@
 from pathlib import Path
 import csv
 import matplotlib.pyplot as plt
-
+from datetime import datetime
 
 path = Path('OHUR.csv')
 lines = path.read_text(encoding='utf-8').splitlines()
@@ -19,9 +19,9 @@ date = []
 OHUR = []
 
 for row in reader:
-    time = (row[0])
+    current_date = datetime.strptime(row[0],'%Y-%m-%d')
     ohur = float(row[1])
-    date.append(time)
+    date.append(current_date)
     OHUR.append(ohur)
 
 
@@ -29,5 +29,8 @@ for row in reader:
 plt.style.use('dark_background')
 figure, graph = plt.subplots()
 
-graph.plt(OHUR, color='blue')
+graph.plot(date, OHUR, color='blue')
+figure.autofmt_xdate()
+graph.set_title('OHUR Numbers')
+graph.set_ylabel('Unemployment Rate', fontsize=12)
 plt.show()
