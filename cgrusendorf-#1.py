@@ -22,9 +22,13 @@ def CSV_extraction():
 
     reader = csv.reader(lines)
     header_row = next(reader)
+
+    #display check for testing purposes
+
     #print(header_row)
     #for index, col_title in enumerate(header_row):
        # print(f'{index}, {col_title}', end=" ")
+
     return reader
 
 def csv_breakdown(reader):
