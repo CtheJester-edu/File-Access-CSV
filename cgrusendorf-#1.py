@@ -11,17 +11,30 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 def CSV_extraction():
+
+    """
+    Function: Opens and resolves the header of the CSV file
+    Inputs: None
+    Outputs: CSV reader with the header resolved
+    """
     path = Path('OHUR.csv')
     lines = path.read_text(encoding='utf-8').splitlines()
 
     reader = csv.reader(lines)
     header_row = next(reader)
-    print(header_row)
-    for index, col_title in enumerate(header_row):
-        print(f'{index}, {col_title}', end=" ")
+    #print(header_row)
+    #for index, col_title in enumerate(header_row):
+       # print(f'{index}, {col_title}', end=" ")
     return reader
 
 def csv_breakdown(reader):
+
+    """
+    Function: Breaks down the CSV file into its components
+    Inputs: The reader for the CSV file after the header is resolved
+    Outputs: The date and OHUR lists
+    """
+
     date = []
     OHUR = []
 
@@ -33,6 +46,12 @@ def csv_breakdown(reader):
     return date,OHUR
 
 def create_graph(date, OHUR):
+
+    """
+    Function: Sets up and draws the graph
+    Inputs: Receives the dates and OHUR lists
+    Outputs: Draws the graph to the screen
+    """
     plt.style.use('dark_background')
     figure, graph = plt.subplots()
 
